@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.krt.system.mapper.UserMapper">
+
+    <!--查询用户列表-->
+    <select id="selctUserlist" resultType="java.util.Map" parameterType="java.util.Map" >
+    select tu.id,tu.username,tu.phone,tu.name,tu.sex,tu.age,tu.address,tr.remark from t_user tu left JOIN t_role tr on tu.role_id=tr.id where 1=1
+    <if test="id !=null">
+        and id=#{id}
+    </if>
+    limit #{page},#{limit}
+    </select>
+
+    <!--查询所有的用户信息-->
+    <select id="slectUsercount" resultType="int">
+            select count(*) from t_user
+    </select>
+
+    <!--删除单个用户-->
+    <delete id="delectuser" parameterType="int">
+        delete from t_user where id=#{id}
+    </delete>
+
+    <!--添加用户信息-->
+    <insert id="insertuser" parameterType="com.krt.system.entity.User">
+        insert into t_user
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null and id!=0 ">id,</if>
+            <if test="username != null and username != ''">username,</if>
+            <if test="password != null and password != ''">password,</if>
+            <if test="name != null and name != ''">name,</if>
+            <if test="age != null">age,</if>
+            <if test="phone != null and phone != ''">phone,</if>
+            <if test="roleId != null">role_id,</if>
+            <if test="sex != null and sex != ''">sex,</if>
+            <if test="address != null and address != ''">address,</if>
+            <if test="insertTime != null">inserttime,</if>
+            <if test="updateTime != null">updatetime,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null and id!=0">#{id,jdbcType=INTEGER},</if>
+            <if test="username != null and username != ''">#{username,jdbcType=VARCHAR},</if>
+            <if test="password != null and password != ''">#{password,jdbcType=VARCHAR},</if>
+            <if test="name != null and name != ''">#{name,jdbcType=VARCHAR},</if>
+            <if test="age != null">#{age,jdbcType=INTEGER},</if>
+            <if test="phone != null and phone != ''">#{phone,jdbcType=VARCHAR},</if>
+            <if test="roleId != null">#{roleId,jdbcType=INTEGER},</if>
+            <if test="sex != null and sex != ''">#{sex,jdbcType=VARCHAR},</if>
+            <if test="address != null and address != ''">#{address,jdbcType=VARCHAR} ,</if>
+            <if test="insertTime != null">#{insertTime,jdbcType=TIMESTAMP},</if>
+            <if test="updateTime != null">#{updateTime,jdbcType=TIMESTAMP},</if>
+        </trim>
+
+    </insert>
+
+    <!--更新用户信息-->
+    <update id="updateuser" parameterType="com.krt.system.entity.User">
+      update t_user
+      <set>
+          <if test="id != null and id!=0 ">id=#{id,jdbcType=INTEGER},</if>
+          <if test="username != null and username != ''">username=#{username,jdbcType=VARCHAR},</if>
+          <if test="password != null and password != ''">password=#{password,jdbcType=VARCHAR},</if>
+          <if test="name != null and name != ''">name=#{name,jdbcType=VARCHAR},</if>
+          <if test="age != null">age=#{age,jdbcType=INTEGER},</if>
+          <if test="phone != null and phone != ''">phone=#{phone,jdbcType=VARCHAR},</if>
+          <if test="roleId != null and roleId!=''">role_id=#{roleId,jdbcType=INTEGER},</if>
+          <if test="sex != null and sex != ''">sex=#{sex,jdbcType=VARCHAR},</if>
+          <if test="address != null and address != ''">address=#{address,jdbcType=VARCHAR} ,</if>
+          <if test="insertTime != null">inserttime=#{insertTime,jdbcType=TIMESTAMP},</if>
+          <if test="updateTime != null">updatetime=#{updateTime,jdbcType=TIMESTAMP},</if>
+      </set>
+      where id=#{id}
+    </update>
+
+    <select id="selectuser" resultType="java.util.Map" parameterType="int" >
+        select tu.id,tu.username,tu.phone,tu.name,tu.sex,tu.role_id,tu.age,tu.address,tr.remark from t_user tu left JOIN t_role tr on tu.role_id=tr.id where tu.id=#{id}
+    </select>
+</mapper>

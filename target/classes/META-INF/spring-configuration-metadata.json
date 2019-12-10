@@ -1,0 +1,28 @@
+{
+  "hints": [],
+  "groups": [
+    {
+      "sourceType": "com.krt.system.entity.Addres",
+      "name": "person.addres",
+      "type": "com.krt.system.entity.Addres"
+    },
+    {
+      "sourceType": "com.krt.common.config.DruidConfig",
+      "name": "spring.datasource",
+      "sourceMethod": "druid()",
+      "type": "javax.sql.DataSource"
+    }
+  ],
+  "properties": [
+    {
+      "sourceType": "com.krt.system.entity.Addres",
+      "name": "person.addres.home",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.krt.system.entity.Addres",
+      "name": "person.addres.school",
+      "type": "java.lang.String"
+    }
+  ]
+}

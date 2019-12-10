@@ -1,0 +1,14 @@
+
+server:
+  port: 8080
+#spring:
+  #datasource:
+    #默认使用tomcat jdbc数据源
+   # driver-class-name: com.mysql.jdbc.Driver
+   # username: root
+   # password: 123456
+    #url: jdbc:mysql://172.30.1.13:3306/sbpoot?useUnicode=true&characterEncoding=UTF-8&serverTimezone=GMT%2b8
+    # 如果没有配置下面的使用默认的tomcat数据源   使用阿里的其余的数据源
+
+
+

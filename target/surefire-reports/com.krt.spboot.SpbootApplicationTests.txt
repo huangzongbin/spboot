@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.krt.spboot.SpbootApplicationTests
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 8.604 s - in com.krt.spboot.SpbootApplicationTests

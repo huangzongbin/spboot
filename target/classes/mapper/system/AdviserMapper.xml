@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.krt.system.mapper.AdviserMapper">
+
+    <!--查询所有的资源列表-->
+    <select id="selectAdviserList" resultType="map" parameterType="java.util.Map">
+    	SELECT * from t_resource where  1=1
+        <if test="insertName !=null and insertName!=''">
+            and insertName like "%${insertName}%"
+        </if>
+        limit #{page},#{limit}
+    </select>
+
+    <!--统计总数-->
+    <select id="selectAdviserCount" resultType="int">
+        select count(*) from t_resource
+    </select>
+
+    <!--用于添加资源用户-->
+    <insert id="insetrAdviser" parameterType="com.krt.system.entity.Adviser">
+        insert into t_resource
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null and id!=0 ">id,</if>
+            <if test="department != null and department != ''">department,</if>
+            <if test="university != null and university != ''">university,</if>
+            <if test="name != null and name != ''">name,</if>
+            <if test="profession != null and profession != ''">profession,</if>
+            <if test="phone != null and phone != ''">phone,</if>
+            <if test="qq_wc != null and qq_wc != ''">qq_wc,</if>
+            <if test="time != null">time,</if>
+            <if test="insertName != null and insertName != ''">insertName,</if>
+            <if test="remark != null and remark != ''">remark,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null and id!=0 ">#{id,jdbcType=INTEGER} ,</if>
+            <if test="department != null and department != ''">#{department,jdbcType=VARCHAR} ,</if>
+            <if test="university != null and university != ''">#{university,jdbcType=VARCHAR} ,</if>
+            <if test="name != null and name != ''">#{name,jdbcType=VARCHAR} ,</if>
+            <if test="profession != null and profession != ''">#{profession,jdbcType=VARCHAR} ,</if>
+            <if test="phone != null and phone != ''">#{phone,jdbcType=VARCHAR} ,</if>
+            <if test="qq_wc != null and qq_wc != ''">#{qq_wc,jdbcType=VARCHAR} ,</if>
+            <if test="time != null">#{time,jdbcType=TIMESTAMP} ,</if>
+            <if test="insertName != null and insertName != ''">#{insertName,jdbcType=VARCHAR} ,</if>
+            <if test="remark != null and remark != ''">#{remark,jdbcType=VARCHAR} ,</if>
+        </trim>
+    </insert>
+
+    <!--删除用户-->
+    <delete id="deletAdviser" parameterType="int">
+        delete from t_resource where id=#{id}
+    </delete>
+
+    <!--查询单个用户-->
+    <select id="selectAdciserone" parameterType="int" resultType="map">
+        SELECT * from t_resource where id=#{id}
+    </select>
+
+    <!--更新用户信息-->
+    <update id="updateAdiviser" parameterType="com.krt.system.entity.Adviser">
+        update  t_resource
+        <set>
+            <if test="department != null and department != ''">department=#{department,jdbcType=VARCHAR} ,</if>
+            <if test="university != null and university != ''">university=#{university,jdbcType=VARCHAR} ,</if>
+            <if test="name != null and name != ''">name=#{name,jdbcType=VARCHAR} ,</if>
+            <if test="profession != null and profession != ''">profession=#{profession,jdbcType=VARCHAR} ,</if>
+            <if test="phone != null and phone != ''">phone=#{phone,jdbcType=VARCHAR} ,</if>
+            <if test="qq_wc != null and qq_wc != ''">qq_wc=#{qq_wc,jdbcType=VARCHAR} ,</if>
+            <if test="time != null">time=#{time,jdbcType=TIMESTAMP} ,</if>
+            <if test="status != null">status=#{status,jdbcType=INTEGER} ,</if>
+            <if test="insertName != null and insertName != ''">insertName=#{insertName,jdbcType=VARCHAR} ,</if>
+            <if test="remark != null and remark != ''">remark=#{remark,jdbcType=VARCHAR} ,</if>
+        </set>
+        where id=#{id}
+    </update>
+
+    <!--更改状态-->
+    <update id="updateStatus" parameterType="int" >
+        update t_resource set status=1 where id=#{id}
+    </update>
+</mapper>
