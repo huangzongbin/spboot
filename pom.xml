@@ -16,7 +16,7 @@
     <!--下面可以进行一些版本的重新设置-->
     <properties>
         <java.version>1.8</java.version>
-        <swagger.version>2.4.0</swagger.version>
+        <swagger.version>2.10.0</swagger.version>
         <shiro-freemarker-tags.version>0.1</shiro-freemarker-tags.version>
     </properties>
 
